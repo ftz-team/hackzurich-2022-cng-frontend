@@ -3,6 +3,16 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
+Future<bool> isFirstTime() async {
+  final prefs = await SharedPreferences.getInstance();
+  bool? notFirstTime = await prefs.getBool(NOT_FIRST_TIME_FLAG);
+  if (notFirstTime != null && notFirstTime) {
+    return false;
+  }
+  await prefs.setBool(NOT_FIRST_TIME_FLAG, true);
+  return true;
+}
+
 Future<String> getUuid() async {
   final prefs = await SharedPreferences.getInstance();
   String? prevUuid = prefs.getString(UUID_STORAGE_PATH);

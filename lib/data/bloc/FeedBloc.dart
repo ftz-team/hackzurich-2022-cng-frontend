@@ -7,6 +7,10 @@ class FeedBloc{
   List<String> _tagsFilter = [];
   String _categoryFilter = 'clothes';
   List <GoodModel> _goods = [];
+  List<String> allTags = [
+    'sustainable',
+    'sports'
+  ];
 
   setCategory(String? category) {
     if (category == null) {
@@ -19,8 +23,12 @@ class FeedBloc{
   }
 
   changeTagState(String tag) {
+    if (tag == '') {
+      _tags.add([]);
+      return;
+    }
     if (_tagsFilter.contains(tag)){
-      _tagsFilter = _tagsFilter.map((t) => t == tag ? t : '').where((element) => element!='').toList();
+      _tagsFilter = _tagsFilter.map((t) => t == tag ? '' : t).where((element) => element!='').toList();
     } else {
       _tagsFilter.add(tag);
     }
@@ -52,6 +60,14 @@ class FeedBloc{
       feed.forEach((feedItem) {_goods.add(feedItem);});
       _feed.add(_goods);
     });
+  }
+
+  goNext(){
+     _goods = _goods..removeAt(0);
+     _feed.add(_goods);
+     if (_goods.length<=4) {
+      _getFeed();
+     }
   }
 
   FeedBloc(){

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cng_mobile/data/models/goodModel.dart';
+import 'package:cng_mobile/ui/components/goodLike.dart';
 import 'package:cng_mobile/utils/firstn.dart';
 import 'package:flutter/material.dart';
 
@@ -92,7 +93,12 @@ class _FeedCard extends State<FeedCard> {
                   imageUrl: card.img,
                   fit: BoxFit.cover,
                 ),
-              )
+              ),
+              Positioned(
+                top: 15,
+                right: 15,
+                child: GoodLike(good: card),
+              ),
             ],
           ),
           ),

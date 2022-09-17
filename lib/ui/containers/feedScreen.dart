@@ -1,5 +1,6 @@
 import 'package:cng_mobile/ui/components/feedCards/feedCards.dart';
 import 'package:cng_mobile/ui/components/feedCategoryHeader.dart';
+import 'package:cng_mobile/ui/components/feedFilters.dart';
 import 'package:flutter/material.dart';
 
 class FeedScreen extends StatefulWidget {
@@ -14,15 +15,19 @@ class _FeedScreen extends State<FeedScreen> {
     return Container(
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           FeedCategoryHeader(),
-          SizedBox(
+          const SizedBox(
+            height: 10,
+          ),
+          FeedFilters(),
+          const SizedBox(
             height: 20,
           ),
           FeedCards(),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
         ]

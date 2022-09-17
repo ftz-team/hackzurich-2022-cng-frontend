@@ -1,4 +1,7 @@
+import 'package:cng_mobile/data/repository/getClient.dart';
 import 'package:cng_mobile/ui/containers/navigator.dart';
+import 'package:cng_mobile/ui/containers/welcomePage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +19,33 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Inter'
       ),
-      home: AppNavigator()
+      home: Main()
     );
   }
+}
+
+class Main extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _Main();
+
+}
+
+class _Main extends State<Main> {
+  @override
+  void initState() {
+    checkFirstTime();
+    super.initState();
+  }
+  checkFirstTime() async {
+    isFirstTime().then((firstTime) => {
+      if (firstTime || true) {
+        Navigator.push(context, CupertinoPageRoute(builder: (context) => WelcomePage()))
+      } 
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return AppNavigator();
+  }
+  
 }
