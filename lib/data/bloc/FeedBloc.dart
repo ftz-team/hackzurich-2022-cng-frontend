@@ -1,5 +1,7 @@
 import 'package:cng_mobile/data/models/goodModel.dart';
 import 'package:cng_mobile/data/repository/feed.dart';
+import 'package:cng_mobile/data/repository/getClient.dart';
+import 'package:dio/dio.dart';
 import 'package:rxdart/rxdart.dart';
 
 class FeedBloc{
@@ -68,6 +70,29 @@ class FeedBloc{
      if (_goods.length<=4) {
       _getFeed();
      }
+  }
+
+  setLike(int goodId, bool liked) async {
+    String uuid = await getUuid();
+    Dio client = await getApiClient();
+    if (liked) {
+      client.post('/like', data: {
+        'good_id': goodId,
+        'uid': uuid
+      });
+    } else {
+      client.post('/dislike', data: {
+        'good_id': goodId,
+        'uid': uuid
+      });
+    }
+    _goods = _goods.map((e){
+      if (e.id == goodId) {
+        e.liked = liked;
+      }
+      return e;
+    }).toList();
+    _feed.add(_goods);
   }
 
   FeedBloc(){

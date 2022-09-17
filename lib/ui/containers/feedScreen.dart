@@ -28,7 +28,7 @@ class _FeedScreen extends State<FeedScreen> {
           ),
           FeedCards(),
           const SizedBox(
-            height: 50,
+            height: 20,
           ),
         ]
       ),

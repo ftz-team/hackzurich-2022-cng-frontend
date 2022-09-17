@@ -6,19 +6,20 @@ class GoodModel {
   late bool liked;
   late int price;
   late String category;
-  late List<String> tags;
+  late List<dynamic> tags;
   late String url;
 
   GoodModel.fromJson(Map parsedJson) {
+    print(parsedJson);
     id = parsedJson['id'];
     name = parsedJson['name'];
     brand = parsedJson['brand'];
-    img = parsedJson['img'];
+    img = parsedJson['image_url'];
     liked = parsedJson['liked'];
     price = parsedJson['price'];
     category = parsedJson['category'];
     tags = parsedJson['tags'];
-    url = parsedJson['url'];
+    url = parsedJson['link'];
 
   }
 

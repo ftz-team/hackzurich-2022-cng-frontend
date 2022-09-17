@@ -1,5 +1,6 @@
 import 'package:cng_mobile/data/bloc/NavigationBloc.dart';
 import 'package:cng_mobile/ui/components/Navigation.dart';
+import 'package:cng_mobile/ui/containers/favouritesScreen.dart';
 import 'package:cng_mobile/ui/containers/feedScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,12 +12,14 @@ class AppNavigator extends StatefulWidget {
 
 class _AppNavigator extends State<AppNavigator> {
   List<Widget> pages= [
-    FeedScreen()
+    FeedScreen(), 
+    CollectionPage()
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: StreamBuilder(
         stream : navigationBloc.tab,
         builder: (context, AsyncSnapshot<int> snapshot) {

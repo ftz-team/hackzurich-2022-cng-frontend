@@ -27,11 +27,11 @@ Widget GoodLabel (String name, String brand) {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              firstn(name.toUpperCase(), 12)+"...",
+              firstn(name.toUpperCase(), 9)+"...",
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w800,
-                fontSize: 24
+                fontSize: 22
               ),
             ),
             Container(
@@ -60,7 +60,8 @@ Widget GoodLabel (String name, String brand) {
 
 class FeedCard extends StatefulWidget {
   GoodModel card;
-  FeedCard({required this.card});
+  String status = 'stable';
+  FeedCard({required this.card, this.status = 'stable'});
   @override
   State<StatefulWidget> createState() => _FeedCard(card: card);
 
@@ -68,10 +69,13 @@ class FeedCard extends StatefulWidget {
 
 class _FeedCard extends State<FeedCard> {
   GoodModel card;
-  _FeedCard({required this.card});
+  String status = 'stable';
+  _FeedCard({required this.card, this.status = 'stable'});
   @override
   Widget build(BuildContext context) {
     return Container(
+      height:  MediaQuery.of(context).size.height *0.6,
+      width: MediaQuery.of(context).size.width *0.9,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black, width: 1),
         borderRadius: BorderRadius.circular(20),
@@ -80,7 +84,7 @@ class _FeedCard extends State<FeedCard> {
       child: Column(
         children: [
           Expanded(
-            flex: 5,
+            flex: 7,
             child: Stack(
             children: [
               ClipRRect(
@@ -99,11 +103,25 @@ class _FeedCard extends State<FeedCard> {
                 right: 15,
                 child: GoodLike(good: card),
               ),
+              status == 'like' ? Positioned(
+                top: 50,
+                right: 100,
+                child: Container(
+                  child: Text(
+                    '',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.black
+                    ),
+                  ),
+                ),
+              ) : SizedBox()
             ],
           ),
           ),
           Expanded(
-            flex: 1,
+            flex: 2,
             child: Column(
               children: [
                 Container(

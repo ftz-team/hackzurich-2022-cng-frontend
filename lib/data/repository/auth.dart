@@ -3,8 +3,9 @@ import 'package:dio/dio.dart';
 
 void setGender(String gender) async {
   Dio client = await getApiClient();
+  String uid = await getUuid();
   client.post('/setGender', data: {
-    'uid': getUuid(),
+    'uid': uid,
     'gender': gender == 'male' ? 'm' : gender == 'women' ? 'f' : 'o'
   });
 }

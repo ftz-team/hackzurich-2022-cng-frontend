@@ -24,7 +24,7 @@ Widget menuItem(String title, bool isActive, int index) {
             ),
         ),
             Container(
-                height: 2,
+                height: 3,
                 width: 100,
                 decoration: BoxDecoration(color: isActive ? new Color(0xffFF0000) : Color.fromARGB(0, 255, 0, 0)),
               )
@@ -45,7 +45,7 @@ class _Navigation extends State<Navigation> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  menuItem('SEARCH', snapshot.data == 0, 0),
+                  menuItem('SEARCH', snapshot.data != 1, 0),
                   menuItem('COLLECTION', snapshot.data == 1, 1),
                 ],
               );

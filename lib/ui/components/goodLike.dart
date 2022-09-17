@@ -1,3 +1,4 @@
+import 'package:cng_mobile/data/bloc/FeedBloc.dart';
 import 'package:cng_mobile/data/models/goodModel.dart';
 import 'package:flutter/material.dart';
 
@@ -11,16 +12,14 @@ class GoodLike extends StatefulWidget {
 
 class _GoodLike extends State<GoodLike> {
   bool liked = false;
+  late int id;
   _GoodLike(GoodModel good){
       liked = good.liked;
+      id = good.id;
   }
 
   toggleLike(){
-    if (this.liked) {
-      // TODO: call unlike
-    } else {
-      // TODO: call like api
-    }
+    feedBloc.setLike(id, !liked);
     this.setState(() {
       liked = !this.liked;
     });
