@@ -8,9 +8,9 @@ class GoodModel {
   late String category;
   late List<dynamic> tags;
   late String url;
+  late bool? promoted;
 
   GoodModel.fromJson(Map parsedJson) {
-    print(parsedJson);
     id = parsedJson['id'];
     name = parsedJson['name'];
     brand = parsedJson['brand'];
@@ -20,6 +20,9 @@ class GoodModel {
     category = parsedJson['category'];
     tags = parsedJson['tags'];
     url = parsedJson['link'];
+    if (parsedJson.containsKey('promoted')){
+      promoted = parsedJson['promoted'];
+    }
 
   }
 

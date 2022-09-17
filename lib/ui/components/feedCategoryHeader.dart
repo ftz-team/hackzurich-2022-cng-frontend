@@ -57,9 +57,6 @@ class _FeedCategoryHeader extends State<FeedCategoryHeader> {
             return SizedBox();
           }
           return Container(
-            margin: EdgeInsets.only(
-              top: 40
-            ),
             child: Row(
               children: generateChildrens(snapshot.data!),
             ),

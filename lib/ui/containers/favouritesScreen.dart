@@ -1,3 +1,5 @@
+import 'package:cng_mobile/ui/components/collectionFeed.dart';
+import 'package:cng_mobile/ui/components/typography/headings.dart';
 import 'package:flutter/material.dart';
 
 class CollectionPage extends StatefulWidget {
@@ -9,12 +11,23 @@ class CollectionPage extends StatefulWidget {
 class _CollectionPage extends State<CollectionPage> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Container(
       child: Column(
         children: [
-          Container(
-            child: Text('fref'),
-          )
+          const SizedBox(
+            height: 50,
+          ),
+          Align(
+            alignment: Alignment.topLeft,
+            child: h2('There it is...'),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          CollectionFeed()
         ],
       ),
     );

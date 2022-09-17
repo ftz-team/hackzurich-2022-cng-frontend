@@ -16,7 +16,7 @@ class _FeedScreen extends State<FeedScreen> {
       child: Column(
         children: [
           const SizedBox(
-            height: 20,
+            height: 50,
           ),
           FeedCategoryHeader(),
           const SizedBox(

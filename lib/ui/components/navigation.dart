@@ -25,7 +25,7 @@ Widget menuItem(String title, bool isActive, int index) {
         ),
             Container(
                 height: 3,
-                width: 100,
+                width: index == 0 ? 100 : 150,
                 decoration: BoxDecoration(color: isActive ? new Color(0xffFF0000) : Color.fromARGB(0, 255, 0, 0)),
               )
       ],
@@ -38,6 +38,10 @@ class _Navigation extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(top: 10),
+      decoration: BoxDecoration(
+        color: Colors.white
+      ),
         child: StreamBuilder(
             stream: navigationBloc.tab,
             builder: (context, AsyncSnapshot<int> snapshot) {

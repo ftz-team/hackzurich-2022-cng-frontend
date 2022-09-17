@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cng_mobile/data/bloc/FeedBloc.dart';
 import 'package:cng_mobile/data/models/goodModel.dart';
+import 'package:cng_mobile/ui/components/common/progressIndicator.dart';
 import 'package:cng_mobile/ui/components/feedCards/feedCard.dart';
 import 'package:flutter/material.dart';
 
@@ -46,21 +47,16 @@ class _FeedCards extends State<FeedCards> {
                 return Container(
                   child: Stack(
                     children: [
-                      Positioned(
-                          left: 0,
-                          top: 0,
+                      Container(
                           child: FeedCard(card: snapshot.data![1])
-                          
                       ),
                       Center(
                         child: Container(
-
                           height: 100,
                           width: 100,
                           child: Container(
                             child: status != 'stable' ? Image.asset('assets/'+status+'/'+random.toString()+'.png') : SizedBox(),
                           ))
-                          
                       ),
                       Draggable(
                         feedback: Positioned(
@@ -90,20 +86,7 @@ class _FeedCards extends State<FeedCards> {
                   )
                 );
               } else {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: CircularProgressIndicator(
-                    color: new Color(0xffFF0000),
-                  ),
-                ),
-                    )
-                  ],
-                );
+                return progressIndicator();
               }
 
             }

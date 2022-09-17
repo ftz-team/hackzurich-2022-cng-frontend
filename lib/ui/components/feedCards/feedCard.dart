@@ -27,7 +27,7 @@ Widget GoodLabel (String name, String brand) {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              firstn(name.toUpperCase(), 9)+"...",
+              firstn(name.toUpperCase(), 9),
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w800,

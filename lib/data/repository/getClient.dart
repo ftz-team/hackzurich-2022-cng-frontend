@@ -20,7 +20,7 @@ Future<String> getUuid() async {
     return prevUuid;
   }
   
-  String newUuid = Uuid().toString();
+  String newUuid = Uuid().v4();
   prefs.setString(UUID_STORAGE_PATH, newUuid);
 
   return newUuid;
