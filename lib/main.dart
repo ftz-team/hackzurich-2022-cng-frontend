@@ -39,7 +39,7 @@ class _Main extends State<Main> {
   }
   checkFirstTime() async {
     isFirstTime().then((firstTime) => {
-      if (firstTime || true) {
+      if (firstTime) {
         Navigator.push(context, CupertinoPageRoute(builder: (context) => WelcomePage()))
       } 
     });

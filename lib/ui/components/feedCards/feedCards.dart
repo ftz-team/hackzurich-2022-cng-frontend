@@ -47,9 +47,6 @@ class _FeedCards extends State<FeedCards> {
                 return Container(
                   child: Stack(
                     children: [
-                      Container(
-                          child: FeedCard(card: snapshot.data![1])
-                      ),
                       Center(
                         child: Container(
                           height: 100,
@@ -75,11 +72,11 @@ class _FeedCards extends State<FeedCards> {
                         onDragStarted: handleStart,
                         onDragEnd: (d){
                               if (status == 'like') {
-                                feedBloc.setLike(snapshot.data![0].id, true);
-                              } else {
-                                feedBloc.setLike(snapshot.data![0].id, false);
+                                feedBloc.beaconAction(snapshot.data![0].id, true);
+                              } else if (status == 'skip') {
+                                feedBloc.beaconAction(snapshot.data![0].id, false);
                               }
-                              feedBloc.goNext();
+                              
                         },
                       ),
                     ],

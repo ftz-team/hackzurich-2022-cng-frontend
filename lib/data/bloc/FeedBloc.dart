@@ -8,7 +8,7 @@ class FeedBloc{
 
   List<String> _tagsFilter = [];
   String _categoryFilter = 'clothes';
-  List <GoodModel> _goods = [];
+  List <GoodModel> a_goods = [];
   List<String> allTags = [
     'sustainable',
     'sports'
@@ -20,7 +20,7 @@ class FeedBloc{
       return;
     }
     _categoryFilter = category;
-    _goods = [];
+    a_goods = [];
     _getFeed();
   }
 
@@ -35,7 +35,7 @@ class FeedBloc{
       _tagsFilter.add(tag);
     }
 
-    _goods = _goods.where((good){
+    a_goods = a_goods.where((good){
       for (var goodTag in good.tags) {
         if (!_tagsFilter.contains(goodTag)) {
           return false;
@@ -62,16 +62,17 @@ class FeedBloc{
   _getFeed() async {
     _category.add(_categoryFilter);
      _tags.add(_tagsFilter);
+     a_goods = [];
     getFeed(_tagsFilter, _categoryFilter).then((feed) {
-      feed.forEach((feedItem) {_goods.add(feedItem);});
-      _feed.add(_goods);
+      feed.forEach((feedItem) {a_goods.add(feedItem);});
+      _feed.add(a_goods);
     });
   }
 
   goNext(){
-     _goods = _goods..removeAt(0);
-     _feed.add(_goods);
-     if (_goods.length<=4) {
+     a_goods = a_goods..removeAt(0);
+     _feed.add(a_goods);
+     if (a_goods.length<=4) {
       _getFeed();
      }
   }
@@ -90,13 +91,30 @@ class FeedBloc{
         'uid': uuid
       });
     }
-    _goods = _goods.map((e){
+    a_goods = a_goods.map((e){
       if (e.id == goodId) {
         e.liked = liked;
       }
       return e;
     }).toList();
-    _feed.add(_goods);
+    _feed.add(a_goods);
+  }
+
+  beaconAction (int goodId, bool liked) async {
+      String uuid = await getUuid();
+      Dio client = await getApiClient();
+      if (liked) {
+        client.post('/like', data: {
+          'good_id': goodId,
+          'uid': uuid
+        });
+      } else {
+        client.post('/dislike', data: {
+          'good_id': goodId,
+          'uid': uuid
+        });
+      };
+      goNext();
   }
 
   FeedBloc(){
