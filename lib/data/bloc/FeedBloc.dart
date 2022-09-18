@@ -55,6 +55,10 @@ class FeedBloc{
   final _feed = PublishSubject<List<GoodModel>>();
   Stream<List<GoodModel>> get feed => _feed.stream;
 
+  updateFeed (){
+    _getFeed();
+  }
+
   _getFeed() async {
     _category.add(_categoryFilter);
      _tags.add(_tagsFilter);

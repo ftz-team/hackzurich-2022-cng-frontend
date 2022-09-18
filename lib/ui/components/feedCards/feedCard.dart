@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cng_mobile/data/models/goodModel.dart';
 import 'package:cng_mobile/ui/components/goodLike.dart';
+import 'package:cng_mobile/ui/containers/goodPage.dart';
 import 'package:cng_mobile/utils/firstn.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget GoodPrice (String price) {
@@ -73,7 +75,7 @@ class _FeedCard extends State<FeedCard> {
   _FeedCard({required this.card, this.status = 'stable'});
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(child: Container(
       height:  MediaQuery.of(context).size.height *0.6,
       width: MediaQuery.of(context).size.width *0.9,
       decoration: BoxDecoration(
@@ -149,6 +151,9 @@ class _FeedCard extends State<FeedCard> {
           )
         ],
       ),
-    );
+    ), onTap: () {
+      Navigator.push(context,
+            new CupertinoPageRoute(builder: (context) => GoodPage(good: card)));
+    },);
   }
 }

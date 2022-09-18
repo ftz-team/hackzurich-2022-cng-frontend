@@ -5,6 +5,7 @@ import 'package:cng_mobile/ui/components/feedFilters.dart';
 import 'package:cng_mobile/ui/components/typography/headings.dart';
 import 'package:cng_mobile/utils/firstn.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class GoodPage extends StatelessWidget {
   GoodModel good;
@@ -94,13 +95,19 @@ class GoodPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Image.asset('assets/big-arrow.png'),
-                              Text(
+                              GestureDetector(
+                                onTap: (){
+                                  final Uri _url = Uri.parse(good.url);
+                                  launchUrl(_url);
+                                },
+                                child: Text(
                                 'BUY', 
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 28,
                                   fontWeight: FontWeight.w800
                                 ),
+                              ),
                               )
                             ],
                           ),

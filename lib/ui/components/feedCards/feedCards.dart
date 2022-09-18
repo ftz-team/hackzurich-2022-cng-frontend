@@ -21,12 +21,12 @@ class _FeedCards extends State<FeedCards> {
   }
   handleUpdate(DragUpdateDetails details){
     double offset = details.globalPosition.dx;
-    if (offset > 200) {
+    if (offset > 225) {
       this.setState(() {
         status = 'like';
         
       });
-    } else if (offset < 200) {
+    } else if (offset < 150) {
       this.setState(() {
         status = 'skip';
       });
